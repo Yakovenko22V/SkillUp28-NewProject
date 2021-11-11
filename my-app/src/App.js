@@ -1,4 +1,5 @@
 import './App.css';
+import Input from './ComponentsBTN/Input/Input';
 import './TaskList/TaskList'
 import TaskList from './TaskList/TaskList';
 
@@ -7,24 +8,29 @@ function App() {
     {
       nameOfTask: 'Оплатить комунальные счета',
       idOfTask:'1',
-      flagOfImportance:'Да',
+      flagOfImportance: true,
     },
 
     {
       nameOfTask: 'Сделать домашнее задание на курсы SkillUp',
       idOfTask:'2',
-      flagOfImportance:'Да',
+      flagOfImportance:true,
     },
 
     {
       nameOfTask: 'Посмотреть новый фильм Marvel',
       idOfTask:'3',
-      flagOfImportance:'Нет',
+      flagOfImportance:false,
     },
   ];
   return (
     <div>
-      <TaskList items={arrTask}/>
+      <Input />
+      {
+        arrTask.map((item) => (
+         <TaskList key={item.idOfTask} item={item}/>
+        ))
+      }
     </div>
   )
 }

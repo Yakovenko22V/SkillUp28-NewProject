@@ -1,7 +1,9 @@
 import React from "react";
 
 function BtnImportance(){
-    return
+    return(
+        <button>Пометить задачу как важнаю</button>
+    )
 }
 
 export default BtnImportance;

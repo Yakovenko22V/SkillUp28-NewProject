@@ -1,7 +1,9 @@
 import React from "react";
 
 function BtnDelete() {
-    return 
+    return (
+        <button>Удалить задачу</button>
+    )
 };
 
 export default BtnDelete;
