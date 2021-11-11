@@ -1,12 +1,13 @@
-import logo from './logo.svg';
 import './App.css';
+import './TaskList/TaskList'
+import TaskList from './TaskList/TaskList';
 
 function App() {
-  const taskMassiv= [
+  const arrTask= [
     {
       nameOfTask: 'Оплатить комунальные счета',
       idOfTask:'1',
-      flagOfImportance:'да',
+      flagOfImportance:'Да',
     },
 
     {
@@ -21,13 +22,10 @@ function App() {
       flagOfImportance:'Нет',
     },
   ];
-
-
   return (
-    <div className="App">
-     
+    <div>
+      <TaskList items={arrTask}/>
     </div>
-  );
+  )
 }
-
 export default App;
