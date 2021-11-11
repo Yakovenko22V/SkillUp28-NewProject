@@ -2,7 +2,7 @@ import React from "react";
 
 function BtnDelete() {
     return (
-        <button>Удалить задачу</button>
+        <button className='btn-style'>Удалить задачу</button>
     )
 };
 

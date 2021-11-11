@@ -12,7 +12,8 @@ function TaskList(props) {
     return (
         <div>
             <ul className='listOfTask'>
-                <TaskItem item={item}/>
+                <TaskItem itemT={item.nameOfTask} title='Задача:'/>
+                <TaskItem itemT={item.flagOfImportance} title='Важно ли задание:'/>
                 <BtnDelete/>
                 <BtnImportance/>
                 <hr style={{

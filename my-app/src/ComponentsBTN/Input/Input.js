@@ -2,8 +2,9 @@ import React from "react";
 import './input.scss';
 
 function Input(){
+
     return(
-        <input className='inputData'></input>
+        <input className='inputData' ></input>
     )
 }
 

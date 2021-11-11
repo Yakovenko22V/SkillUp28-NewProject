@@ -2,7 +2,7 @@ import React from "react";
 
 function BtnImportance(){
     return(
-        <button>Пометить задачу как важнаю</button>
+        <button className='btn-style'>Пометить задачу как важнаю</button>
     )
 }
 
