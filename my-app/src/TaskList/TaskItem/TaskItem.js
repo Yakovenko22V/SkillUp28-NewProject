@@ -6,7 +6,7 @@ function TaskItem(props) {
 
     return (
         <div>{title} '
-            <span className={(itemT.length) ? 'span-task' : (itemT ? 'span-import green' : 'span-import red')}>
+            <span className={(itemT.length) ? 'span-task' : (itemT ? 'span-import green' : 'span-import black')}>
             {
             (itemT.length) ?
              itemT : (itemT ? 'Да' : 'Нет')
