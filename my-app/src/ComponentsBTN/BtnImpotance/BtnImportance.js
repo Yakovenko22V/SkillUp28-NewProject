@@ -1,8 +1,9 @@
 import React from "react";
 
-function BtnImportance(){
+function BtnImportance(props){
+    const{isTaskImportant, id} = props
     return(
-        <button className='btn-style'>Пометить задачу как важнаю</button>
+        <button className='btn-style' onClick={() => isTaskImportant(id)}>Пометить задачу как важнаю</button>
     )
 }
 

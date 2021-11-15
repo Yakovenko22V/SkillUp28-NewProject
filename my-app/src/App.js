@@ -11,21 +11,22 @@ import TaskList from './TaskList/TaskList';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { arrTask:[
+    this.state = {
+      arrTask: [
         {
           nameOfTask: 'Оплатить комунальные счета',
           idOfTask: 1,
           flagOfImportance: true,
           isTaskActive: true,
         },
-    
+
         {
           nameOfTask: 'Сделать домашнее задание на курсы SkillUp',
           idOfTask: 2,
           flagOfImportance: true,
           isTaskActive: true,
         },
-    
+
         {
           nameOfTask: 'Посмотреть новый фильм Marvel',
           idOfTask: 3,
@@ -35,25 +36,41 @@ class App extends React.Component {
       ]
     }
   }
-  
+
   deleteTask = id => {
     this.setState(prevState => ({
-      arrTask: prevState.arrTask.filter((el) => el.idOfTask !== id)})
-    )};
+      arrTask: prevState.arrTask.filter((el) => el.idOfTask !== id)
+    })
+    )
+  };
+
+  isTaskImportant = id => {
+    this.setState(prevState => ({
+      arrTask: prevState.arrTask.map((el) => el.idOfTask === id
+        ? { ...el, flagOfImportance: !el.flagOfImportance }
+        : el
+      )
+    }))
+    };
+
 
   render() {
-  return (
-    <div>
+    return (
+      <div>
         <Input />
-        <BtnShow/>
-        <BtnActiveTask/>
-        <BtnFinishedTask/>
-      {
-        this.state.arrTask.map((item) => (
-          <TaskList key={item.idOfTask} item={item} deleteTask={this.deleteTask}/>
-        ))
-      }
-    </div>
-  )
-}}
+        <BtnShow />
+        <BtnActiveTask />
+        <BtnFinishedTask />
+        {
+          this.state.arrTask.map((item) => (
+            <TaskList key={item.idOfTask}
+              item={item}
+              deleteTask={this.deleteTask}
+              isTaskImportant={this.isTaskImportant} />
+          ))
+        }
+      </div>
+    )
+  }
+}
 export default App;

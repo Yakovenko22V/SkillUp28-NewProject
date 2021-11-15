@@ -14,12 +14,6 @@ function TaskItem(props) {
              </span>'
         </div>
     )
-    // return (
-    //     <div>
-    //         <div>Задание: '<span style={{ fontWeight: "bold" }}>{item.nameOfTask}</span>'.</div>
-    //         <div>Важно ли задание: <span style={{ fontWeight: "bold", color: item.flagOfImportance ? 'red' : 'black' }}>{item.flagOfImportance ? 'Да' : 'Нет'}</span></div>
-    //     </div>
-    // )
 }
 
 export default TaskItem;
