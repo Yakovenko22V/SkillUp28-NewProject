@@ -1,9 +1,9 @@
 import React from "react";
 
-function BtnActiveTask() {
+function BtnAllActiveTask() {
     return(
         <button className='btn-style'>Активные задачи</button>
     )
 };
 
-export default BtnActiveTask;
+export default BtnAllActiveTask;

@@ -1,5 +1,4 @@
   .btn-style {
-      // margin: 10px 20px 0px 10px;
     text-decoration: none;
     display: inline-block;
     color:black;
@@ -35,3 +34,10 @@
   .span-import.black {
     color: black;
   }
+
+  .non-active-style{
+    color: rgba(0,0,0,0.4);
+  }
+  #non-active-style{
+    color: rgba(0,0,0,0.4);
+  };

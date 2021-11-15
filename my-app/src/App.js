@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import BtnActiveTask from './ComponentsBTN/BtnActiveTask/BtnActiveTask';
+import BtnAllActiveTask from './ComponentsBTN/BtnAllActiveTask/BtnAllActiveTask';
 import BtnShow from './ComponentsBTN/BtnAllTask/BtnAllTask';
 import BtnFinishedTask from './ComponentsBTN/BtnFinishedTask/BtnFinishedTask';
 import Input from './ComponentsBTN/Input/Input';
@@ -47,10 +47,18 @@ class App extends React.Component {
   isTaskImportant = id => {
     this.setState(prevState => ({
       arrTask: prevState.arrTask.map((el) => el.idOfTask === id
-        ? { ...el, flagOfImportance: !el.flagOfImportance }
+        ? { ...el, flagOfImportance: !el.flagOfImportance}
         : el
       )
     }))
+    };
+
+    isTasksActive = id => {
+      this.setState(prevState => ({
+        arrTask:prevState.arrTask.map((el) => el.idOfTask === id 
+        ? {...el, isTaskActive: !el.isTaskActive}
+        : el)
+      }))
     };
 
 
@@ -59,14 +67,15 @@ class App extends React.Component {
       <div>
         <Input />
         <BtnShow />
-        <BtnActiveTask />
+        <BtnAllActiveTask />
         <BtnFinishedTask />
         {
           this.state.arrTask.map((item) => (
             <TaskList key={item.idOfTask}
               item={item}
               deleteTask={this.deleteTask}
-              isTaskImportant={this.isTaskImportant} />
+              isTaskImportant={this.isTaskImportant} 
+              isTasksActive={this.isTasksActive}/>
           ))
         }
       </div>
