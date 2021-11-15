@@ -7,14 +7,13 @@ import TaskItem from "./TaskItem/TaskItem";
 
 function TaskList(props) {
 
-    const {item} = props
-
+    const {item, deleteTask} = props
     return (
         <div>
             <ul className='listOfTask'>
                 <TaskItem itemT={item.nameOfTask} title='Задача:'/>
                 <TaskItem itemT={item.flagOfImportance} title='Важно ли задание:'/>
-                <BtnDelete/>
+                <BtnDelete deleteTask={deleteTask} id={item.idOfTask}/>
                 <BtnImportance/>
                 <hr style={{
                     color: '#000000',

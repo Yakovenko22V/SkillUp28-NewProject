@@ -35,6 +35,12 @@ class App extends React.Component {
       ]
     }
   }
+  
+  deleteTask = id => {
+    this.setState(prevState => ({
+      arrTask: prevState.arrTask.filter((el) => el.idOfTask !== id)})
+    )};
+
   render() {
   return (
     <div>
@@ -44,7 +50,7 @@ class App extends React.Component {
         <BtnFinishedTask/>
       {
         this.state.arrTask.map((item) => (
-          <TaskList key={item.idOfTask} item={item} />
+          <TaskList key={item.idOfTask} item={item} deleteTask={this.deleteTask}/>
         ))
       }
     </div>
