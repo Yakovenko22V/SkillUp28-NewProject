@@ -19,7 +19,7 @@ function TaskList(props) {
             <ul className='listOfTask'>
                 <div className={(item.isTaskActive === false) ? 'non-active-style' : ''}>
                 <TaskItem itemT={item.nameOfTask} title='Задача:'/>
-                <TaskItem itemT={item.flagOfImportance} itemN={item.isTaskActive} title='Важно ли задание:'/>
+                <TaskItem itemT={item.flagOfImportance} itemN={item.isTaskActive} title='Важна ли задача:'/>
                 </div>
                 <BtnDelete deleteTask={deleteTask} id={item.idOfTask}/>
                 <BtnImportance isTaskImportant={isTaskImportant} id={item.idOfTask}/>
