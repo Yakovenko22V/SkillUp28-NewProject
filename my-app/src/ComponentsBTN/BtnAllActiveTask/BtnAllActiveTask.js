@@ -1,8 +1,14 @@
 import React from "react";
 
-function BtnAllActiveTask() {
+function BtnAllActiveTask({arrTaskFilter,activeBtn}) {
+    
+    let newClassName = 'btn-style'
+    if (activeBtn === 'allActive') {
+        newClassName = 'btn-style active'
+    }
+
     return(
-        <button className='btn-style'>Активные задачи</button>
+        <button className={newClassName} onClick={() => arrTaskFilter('allActive')}>Активные задачи</button>
     )
 };
 

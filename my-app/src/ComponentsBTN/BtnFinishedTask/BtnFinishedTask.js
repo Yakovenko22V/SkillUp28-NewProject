@@ -1,8 +1,14 @@
 import React from "react";
 
-function BtnFinishedTask() {
+function BtnFinishedTask({arrTaskFilter, activeBtn}) {
+    
+    let newClassName = 'btn-style'
+    if (activeBtn === 'closed'){
+        newClassName = 'btn-style active'
+    }
+
     return (
-        <button className='btn-style'>Завершенные задачи</button>
+        <button className={newClassName} onClick={() => arrTaskFilter('closed')}>Завершенные задачи</button>
     )
 };
 

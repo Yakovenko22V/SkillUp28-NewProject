@@ -1,9 +1,12 @@
 import React from "react";
 
 function BtnActive(props) {
-    const{isTasksActive, id} = props
+    const{isTasksActive, id, item} = props
+    
+    const changeText = (item.isTaskActive === true) ?  "Деативировать" : "Активировать"
+
     return (
-        <button className='btn-style' onClick={() => isTasksActive(id)}>Активировать/Деактивировать</button>
+        <button className='btn-style' onClick={() => isTasksActive(id)}>{changeText}</button>
     )
 };
 

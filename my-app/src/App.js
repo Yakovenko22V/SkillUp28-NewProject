@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import BtnAllActiveTask from './ComponentsBTN/BtnAllActiveTask/BtnAllActiveTask';
-import BtnShow from './ComponentsBTN/BtnAllTask/BtnAllTask';
+import BtnAllTask from './ComponentsBTN/BtnAllTask/BtnAllTask';
 import BtnFinishedTask from './ComponentsBTN/BtnFinishedTask/BtnFinishedTask';
 import Input from './ComponentsBTN/Input/Input';
 import './TaskList/TaskList'
@@ -12,6 +12,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      displayedList: '',
       arrTask: [
         {
           nameOfTask: 'Оплатить комунальные счета',
@@ -47,38 +48,59 @@ class App extends React.Component {
   isTaskImportant = id => {
     this.setState(prevState => ({
       arrTask: prevState.arrTask.map((el) => el.idOfTask === id
-        ? { ...el, flagOfImportance: !el.flagOfImportance}
+        ? { ...el, flagOfImportance: !el.flagOfImportance }
         : el
       )
     }))
-    };
+  };
 
-    isTasksActive = id => {
-      this.setState(prevState => ({
-        arrTask:prevState.arrTask.map((el) => el.idOfTask === id 
-        ? {...el, isTaskActive: !el.isTaskActive}
+  isTasksActive = id => {
+    this.setState(prevState => ({
+      arrTask: prevState.arrTask.map((el) => el.idOfTask === id
+        ? { ...el, isTaskActive: !el.isTaskActive }
         : el)
-      }))
-    };
+    }))
+  };
+
+  arrTaskFilter = data => {
+    console.log(data)
+    this.setState(prevState => ({
+      ...prevState,
+      displayedList: data
+    }))
+  };
 
 
   render() {
+    
+    const newArray = this.state.arrTask.filter(item => {
+      if (this.state.displayedList === 'all') {
+        return item
+      } else if (this.state.displayedList === 'closed') {
+        return !item.isTaskActive
+      } else if (this.state.displayedList === 'allActive') {
+        return item.isTaskActive
+      } else {
+        return item
+      }
+    })
+
     return (
       <div>
-        <Input />
-        <BtnShow />
-        <BtnAllActiveTask />
-        <BtnFinishedTask />
-        {
-          this.state.arrTask.map((item) => (
-            <TaskList key={item.idOfTask}
-              item={item}
-              deleteTask={this.deleteTask}
-              isTaskImportant={this.isTaskImportant} 
-              isTasksActive={this.isTasksActive}/>
-          ))
-        }
-      </div>
+          <Input />
+          <BtnAllTask arrTaskFilter={this.arrTaskFilter} activeBtn={this.state.displayedList}/>
+          <BtnAllActiveTask arrTaskFilter={this.arrTaskFilter} activeBtn={this.state.displayedList} />
+          <BtnFinishedTask arrTaskFilter={this.arrTaskFilter} activeBtn={this.state.displayedList}/>
+          {
+            newArray.map((item) => (
+              <TaskList key={item.idOfTask}
+                item={item}
+                deleteTask={this.deleteTask}
+                isTaskImportant={this.isTaskImportant}
+                isTasksActive={this.isTasksActive} />
+            ))
+          }
+        </div>
     )
   }
 }
