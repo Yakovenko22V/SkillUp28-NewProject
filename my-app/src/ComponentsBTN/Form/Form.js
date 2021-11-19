@@ -16,11 +16,11 @@ class Form extends React.Component {
         }))
     };
 
-    disableBtnProps = () => (this.state.inputTextForAdd === '') ? true : false;
+    disableBtnProps = () => (this.state.inputTextForAdd === undefined||
+    this.state.inputTextForAdd === '' ||
+    this.state.inputTextForAdd.replace(/\s/g,"") === "" ) ? true : false;
     setClassName = () => (this.disableBtnProps() === true) ? 'ds' : 'btn-style'
     render() {
-        console.log('1', this.state.disabled);
-        console.log('2', this.setClassName());
         return (
             <div className='tools-to-add'>
                 <input placeholder='Создать задачу' onChange={(e) => this.getAdditionalText(e.target.value)}></input>
