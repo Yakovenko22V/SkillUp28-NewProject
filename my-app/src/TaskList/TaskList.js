@@ -24,11 +24,7 @@ function TaskList(props) {
                 <BtnDelete deleteTask={deleteTask} id={item.idOfTask}/>
                 <BtnImportance isTaskImportant={isTaskImportant} id={item.idOfTask}/>
                 <BtnActive isTasksActive={isTasksActive} item={item} id={item.idOfTask}/>
-                <hr style={{
-                    color: '#000000',
-                    height: .5,
-                    width: '90%',
-                }} />
+                <hr className='hrLine' />
             </ul>
         </div>
     )
