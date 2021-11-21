@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import './styles-bar.scss';
+import './loadingStyle/loadingStyle.scss';
 import BtnAllActiveTask from './ComponentsBTN/BtnAllActiveTask/BtnAllActiveTask';
 import BtnAllTask from './ComponentsBTN/BtnAllTask/BtnAllTask';
 import BtnFinishedTask from './ComponentsBTN/BtnFinishedTask/BtnFinishedTask';
@@ -8,6 +9,7 @@ import Input from './ComponentsBTN/Input/Input';
 import './TaskList/TaskList'
 import TaskList from './TaskList/TaskList';
 import Form from './ComponentsBTN/Form/Form';
+import { loadData } from './ComponentsBTN/Utils/loadData';
 
 
 class App extends React.Component {
@@ -16,28 +18,7 @@ class App extends React.Component {
     this.state = {
       displayedList: '',
       filteredArr: '',
-      arrTask: [
-        {
-          nameOfTask: 'Оплатить комунальные счета',
-          idOfTask: 1,
-          flagOfImportance: true,
-          isTaskActive: true,
-        },
-
-        {
-          nameOfTask: 'Сделать домашнее задание на курсы SkillUp',
-          idOfTask: 2,
-          flagOfImportance: true,
-          isTaskActive: true,
-        },
-
-        {
-          nameOfTask: 'Посмотреть новый фильм Marvel',
-          idOfTask: 3,
-          flagOfImportance: false,
-          isTaskActive: false,
-        },
-      ]
+      arrTask: []
     }
   }
 
@@ -91,6 +72,14 @@ class App extends React.Component {
     this.setState({ arrTask: arrWithNewTask })
   };
 
+  componentDidMount() {
+    loadData().then((data) => {
+      console.log('data', data);
+      this.setState({
+        arrTask:data
+      })
+    });
+  }
 
   render() {
 
@@ -115,6 +104,8 @@ class App extends React.Component {
 
     });
 
+    if(this.state.arrTask.length === 0) return <div className='loding-block'><div className="lds-circle"><div></div></div><div>Loading</div></div>
+    
     return (
       <div className='parent-block'>
         <div className='todo-list'><h1>TODO-List</h1></div>
