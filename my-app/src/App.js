@@ -18,7 +18,7 @@ class App extends React.Component {
     this.state = {
       displayedList: '',
       filteredArr: '',
-      arrTask: []
+      arrTask: null
     }
   }
 
@@ -74,15 +74,13 @@ class App extends React.Component {
 
   componentDidMount() {
     loadData().then((data) => {
-      console.log('data', data);
       this.setState({
         arrTask:data
       })
     });
   }
 
-  render() {
-
+  filterArrTask() {
     const newArray = this.state.arrTask.filter(item => {
       if (this.state.displayedList === 'all') {
         return item
@@ -94,18 +92,24 @@ class App extends React.Component {
         return item
       }
     })
+    return newArray
+  };
 
-    const newArrayTwo = newArray.filter(item => {
+  filterNewArray() {
+    const newArrayTwo = this.filterArrTask().filter(item => {
       if (this.state.filteredArr === '') {
         return item
       } else {
         return item.nameOfTask.toLowerCase().includes(this.state.filteredArr.toLowerCase())
       }
-
     });
+   return newArrayTwo 
+  };
 
-    if(this.state.arrTask.length === 0) return <div className='loding-block'><div className="lds-circle"><div></div></div><div>Loading</div></div>
-    
+  render() {
+
+    if(!this.state.arrTask) return <div className='loding-block'><div className="lds-circle"><div></div></div><div>Loading</div></div>
+
     return (
       <div className='parent-block'>
         <div className='todo-list'><h1>TODO-List</h1></div>
@@ -125,7 +129,7 @@ class App extends React.Component {
           </div>
           <div className='task-container'>
             {
-              newArrayTwo.map((item) => (
+              this.filterNewArray().map((item) => (
                 <TaskList key={item.idOfTask}
                   item={item}
                   deleteTask={this.deleteTask}
